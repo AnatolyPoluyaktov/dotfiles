@@ -60,3 +60,4 @@ map("n", "<leader>sc", "<C-w>c", opts)
 
 -- Сделать окна равными по размеру
 map("n", "<leader>se", "<C-w>=", opts)
+

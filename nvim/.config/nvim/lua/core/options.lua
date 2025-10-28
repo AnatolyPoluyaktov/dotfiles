@@ -19,12 +19,11 @@ vim.opt.scrolloff = 8
 --  Отключает перенос строк
 vim.opt.wrap = false
 -- Включает поддержку 24-битных (truecolor) цветов в терминале
+vim.opt.termguicolors = true
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-
-
 
 -- fillchars
 vim.opt.fillchars = {
@@ -36,15 +35,3 @@ vim.opt.fillchars = {
 	foldsep = "│", -- разделитель между блоками
 	foldclose = "", -- иконка закрытого блока (можно заменить на ▶)
 }
-
--- Выделять цветом выбранные файлы в NvimTree
-
-vim.diagnostic.config({
-	virtual_text = {
-		spacing = 4,
-		prefix = "●", -- или ">>" или пусто
-	},
-	float = {
-		border = "rounded",
-	},
-})
