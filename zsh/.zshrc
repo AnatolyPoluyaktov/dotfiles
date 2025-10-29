@@ -128,3 +128,6 @@ eval "$(pyenv init -)"
 export PATH="/Users/andromeda/.local/bin:$PATH"
 export PATH=$PATH:/usr/local/go/binexport PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export BAT_THEME="Catppuccin Mocha"
+export COLORTERM=truecolor

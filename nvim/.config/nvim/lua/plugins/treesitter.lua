@@ -14,6 +14,7 @@ return {
                 highlight = {
                     enable = true,
                     additional_vim_regex_highlighting = false,
+                    disable = {}, -- список языков для отключения highlight (если нужно)
                 },
                 indent = { enable = true },
                 auto_install = false,

@@ -20,6 +20,8 @@ vim.opt.scrolloff = 8
 vim.opt.wrap = false
 -- Включает поддержку 24-битных (truecolor) цветов в терминале
 vim.opt.termguicolors = true
+-- Включаем синтаксическую подсветку (на случай если отключена)
+vim.cmd("syntax enable")
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1

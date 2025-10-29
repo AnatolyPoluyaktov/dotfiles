@@ -23,7 +23,6 @@ return {
 			enabled = false,
 		},
 		picker = {
-			ignored = true,
 			enabled = true,
 			sources = {
 				files = {
@@ -199,13 +198,6 @@ return {
 			desc = "Grep Open Buffers",
 		},
 		{
-			"<leader>st",
-			function()
-				Snacks.picker.grep()
-			end,
-			desc = "Grep",
-		},
-		{
 			"<leader>sw",
 			function()
 				Snacks.picker.grep_word()
@@ -236,13 +228,6 @@ return {
 			desc = "Autocmds",
 		},
 		-- Removed duplicate mapping for <leader>sb (already defined at line 175-180)
-		{
-			"<leader>sc",
-			function()
-				Snacks.picker.command_history()
-			end,
-			desc = "Command History",
-		},
 		{
 			"<leader>sC",
 			function()
@@ -484,13 +469,6 @@ return {
 				Snacks.terminal()
 			end,
 			desc = "Toggle Terminal",
-		},
-		{
-			"<c-_>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "which_key_ignore",
 		},
 		{
 			"]]",
