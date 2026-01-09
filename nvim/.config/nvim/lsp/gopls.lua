@@ -1,4 +1,3 @@
-local blink = require("blink.cmp")
 return {
     cmd = { 'gopls' },
     filetypes = { 'go', 'gomod', 'gowork', 'gotmpl', 'gosum' },
@@ -103,7 +102,7 @@ return {
             },
             usePlaceholders = true,
             completeUnimported = true,
-            staticcheck = true,
+            staticcheck = false,
             directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
             semanticTokens = false,
         },
@@ -120,26 +119,4 @@ return {
     --         },
     --     }
     -- ),
-    on_attach = function(client, bufnr)
-        -- Автоматическая вставка импортов при использовании автодополнения
-        local function organize_imports()
-            local params = vim.lsp.util.make_range_params()
-            params.context = { only = { "source.organizeImports" } }
-            
-            local result = vim.lsp.buf_request_sync(bufnr, "textDocument/codeAction", params, 3000)
-            for _, res in pairs(result or {}) do
-                for _, r in pairs(res.result or {}) do
-                    if r.edit then
-                        vim.lsp.util.apply_workspace_edit(r.edit, "UTF-8")
-                    end
-                end
-            end
-        end
-        
-        -- Организация импортов при сохранении
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            callback = organize_imports,
-        })
-    end,
 }

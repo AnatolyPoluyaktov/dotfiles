@@ -1,18 +1,30 @@
--- Catppuccin: Macchiato (тёмная синяя палитра)
-return {
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
-    opts = {
-      flavour = "macchiato", -- варианты: latte, frappe, macchiato, mocha
-      transparent_background = false,
-      term_colors = true,
-      dim_inactive = {
-        enabled = false,
-      },
-      styles = {
-        comments = { "italic" },
+return { "catppuccin/nvim",
+ name = "catppuccin",
+  priority = 1000 ,
+config = function()
+  require("catppuccin").setup({
+    flavour = "auto", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    transparent_background = false, -- disables setting the background color.
+    float = {
+        transparent = false, -- enable transparent floating windows
+        solid = false, -- use solid styling for floating windows, see |winborder|
+    },
+    show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+    term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+    dim_inactive = {
+        enabled = false, -- dims the background color of inactive window
+        shade = "dark",
+        percentage = 0.15, -- percentage of the shade to apply to the inactive window
+    },
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
+    no_underline = false, -- Force no underline
+    styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+        comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
         loops = {},
         functions = {},
@@ -24,68 +36,46 @@ return {
         properties = {},
         types = {},
         operators = {},
-      },
-      custom_highlights = function(colors)
-        return {
-          -- Яркие цвета для синтаксических элементов
-          ["@string"] = { fg = colors.yellow, style = {} },
-          ["@string.special"] = { fg = colors.yellow, style = {} },
-          ["@function"] = { fg = colors.blue, style = {} },
-          ["@function.call"] = { fg = colors.blue, style = {} },
-          ["@function.builtin"] = { fg = colors.sapphire, style = {} },
-          ["@function.method"] = { fg = colors.blue, style = {} },
-          ["@method"] = { fg = colors.blue, style = {} },
-          ["@method.call"] = { fg = colors.blue, style = {} },
-          ["@keyword"] = { fg = colors.mauve, style = {} },
-          ["@keyword.function"] = { fg = colors.mauve, style = {} },
-          ["@keyword.return"] = { fg = colors.mauve, style = {} },
-          ["@keyword.operator"] = { fg = colors.mauve, style = {} },
-          ["@keyword.conditional"] = { fg = colors.mauve, style = {} },
-          ["@variable"] = { fg = colors.lavender, style = {} },
-          ["@variable.builtin"] = { fg = colors.red, style = {} },
-          ["@variable.parameter"] = { fg = colors.maroon, style = {} },
-          ["@parameter"] = { fg = colors.maroon, style = {} },
-          ["@number"] = { fg = colors.peach, style = {} },
-          ["@boolean"] = { fg = colors.peach, style = {} },
-          ["@operator"] = { fg = colors.sky, style = {} },
-          ["@property"] = { fg = colors.flamingo, style = {} },
-          ["@field"] = { fg = colors.flamingo, style = {} },
-          ["@type"] = { fg = colors.sapphire, style = {} },
-          ["@type.builtin"] = { fg = colors.blue, style = {} },
-          ["@type.definition"] = { fg = colors.sapphire, style = {} },
-          ["@constant"] = { fg = colors.peach, style = {} },
-          ["@constant.builtin"] = { fg = colors.red, style = {} },
-          ["@constant.macro"] = { fg = colors.mauve, style = {} },
-          ["@namespace"] = { fg = colors.teal, style = {} },
-          ["@module"] = { fg = colors.teal, style = {} },
-          ["@label"] = { fg = colors.teal, style = {} },
-          ["@punctuation.delimiter"] = { fg = colors.overlay2, style = {} },
-          ["@punctuation.bracket"] = { fg = colors.overlay2, style = {} },
-          ["@punctuation.special"] = { fg = colors.overlay2, style = {} },
-          ["@comment"] = { fg = colors.surface2, style = { "italic" } },
-          ["@text"] = { fg = colors.text, style = {} },
-          ["@text.emphasis"] = { fg = colors.mauve, style = { "italic" } },
-          ["@text.strong"] = { fg = colors.mauve, style = { "bold" } },
-        }
-      end,
-      integrations = {
+        -- miscs = {}, -- Uncomment to turn off hard-coded styles
+    },
+    lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+        virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+        },
+        underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+            ok = { "underline" },
+        },
+        inlay_hints = {
+            background = true,
+        },
+    },
+    color_overrides = {},
+    custom_highlights = {},
+    default_integrations = true,
+    auto_integrations = false,
+    integrations = {
         cmp = true,
         gitsigns = true,
         nvimtree = true,
-        treesitter = true,
-        telescope = { enabled = true },
-        notify = true,
-        mini = true,
-        which_key = true,
-        noice = true,
-        indent_blankline = { enabled = true },
-        lsp_trouble = true,
-      },
+        notify = false,
+        mini = {
+            enabled = true,
+            indentscope_color = "",
+        },
+        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
-    end,
-  },
-}
+})
 
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin"
+end,
+
+}
