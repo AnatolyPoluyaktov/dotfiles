@@ -1,9 +1,5 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -116,18 +112,10 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias gh='history|grep'
-alias va='source ./venv/bin/activate'
 alias load_envs='set -a && source .env && set +a '
-alias ports='netstat -tulanp'
-alias dockrun='sudo docker run -i -t --privileged $@'
-alias dockstop='sudo docker stop $(docker ps -a -q)'
-alias dockrm='sudo docker rm $(docker ps -a -q)'export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 export PATH="/Users/andromeda/.local/bin:$PATH"
-export PATH=$PATH:/usr/local/go/binexport PATH="$HOME/.cargo/bin:$PATH"
+export PATH=$PATH:/usr/local/go/binexport
 export PATH="$HOME/.cargo/bin:$PATH"
 
-export BAT_THEME="Catppuccin Mocha"
 export COLORTERM=truecolor

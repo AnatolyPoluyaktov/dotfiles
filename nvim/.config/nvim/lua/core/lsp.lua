@@ -38,7 +38,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   
 
     -- 🧹 форматирование (если сервер поддерживает)
-    map("n", "<leader>f", function()
+    map("n", "<leader>fm", function()
       vim.lsp.buf.format({ async = true })
     end, "Format buffer")
   end,
